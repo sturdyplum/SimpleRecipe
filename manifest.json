@@ -1,0 +1,22 @@
+{
+    "name": "Simple Recipe",
+    "version": "1.0",
+    "description": "Quickly collect and simply display recpie information.",
+    "permissions": ["declarativeContent", "storage", "tabs", "activeTab"],
+    "page_action": {
+        "default_popup": "interface.html",
+        "default_icon": {
+          "16": "images/logo16.png",
+          "32": "images/logo32.png",
+          "48": "images/logo48.png",
+          "128": "images/logo128.png"
+        }
+    },
+    "icons": {
+        "16": "images/logo16.png",
+        "32": "images/logo32.png",
+        "48": "images/logo48.png",
+        "128": "images/logo128.png"
+    },
+    "manifest_version": 2
+}
