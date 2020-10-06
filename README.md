@@ -39,7 +39,7 @@ Unfortunetly there are some issues with chrome extensions that don't allow me to
 - https://www.woolworths.com.au/
 
 ## How to contribute
-1. The most useful contributions would be adding new website that can be processed. I do plan on making a smarted more general parser that will be able to parse a large number of sites but having dedicated parsers will always be prefered. 
+1. The most useful contributions would be adding new website that can be processed. There is a general parser that is able to parse a large number of sites but having dedicated parsers will always be prefered. 
 2. Writing test
 3. Documentation
 4. Creating a better logo
