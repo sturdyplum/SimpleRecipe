@@ -1,8 +1,8 @@
 {
     "name": "Simple Recipe",
-    "version": "1.0",
-    "description": "Quickly collect and simply display recpie information.",
-    "permissions": ["declarativeContent", "storage", "tabs", "activeTab"],
+    "version": "0.0.0.1",
+    "description": "Quickly collect and simply display recipe information.",
+    "permissions": ["declarativeContent", "tabs", "activeTab"],
     "page_action": {
         "default_popup": "interface.html",
         "default_icon": {

@@ -4,7 +4,6 @@ const cheerio = require("cheerio");
 const RecipeSchema = require("../helpers/recipe-schema");
 
 const bonAppetit = (url, html) => {
-  console.log("HERE " + url + " " + html );
   const Recipe = new RecipeSchema();
   return new Promise((resolve, reject) => {
     if (!url.includes("bonappetit.com/recipe/")) {

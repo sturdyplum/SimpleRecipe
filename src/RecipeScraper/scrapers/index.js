@@ -30,6 +30,8 @@ const domains = {
   woolworths: require("./woolworths"),
 };
 
+
+
 const recipeScraper = (url, html) => {
   return new Promise((resolve, reject) => {
     let parse = parseDomain(url);
@@ -38,10 +40,11 @@ const recipeScraper = (url, html) => {
       if (domains[domain] !== undefined) {
         resolve(domains[domain](url, html));
       } else {
-        reject(new Error("Site not yet supported"));
+        resolve(require("./general_scrape")(url, html));
       }
     } else {
-      reject(new Error("Failed to parse domain"));
+      // Try to use general scraper
+      resolve(require("./general_scrape")(url, html));
     }
   });
 };
