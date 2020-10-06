@@ -4,6 +4,10 @@ const cheerio = require("cheerio");
 
 const RecipeSchema = require("../helpers/recipe-schema");
 
+function processString(str) {
+    return str.replace(/\s+/g, ' ').trim();
+}
+
 const generalScrape = (url, html) => {
   const Recipe = new RecipeSchema();
   return new Promise((resolve, reject) => {
@@ -20,7 +24,7 @@ const generalScrape = (url, html) => {
             }
             let elText = $(el).text();
             if (elText.length) {
-                Recipe.ingredients.push(elText.trim());
+                Recipe.ingredients.push(processString(elText));
             }
         });
 
@@ -33,13 +37,11 @@ const generalScrape = (url, html) => {
             $(el).find("li").each((i, li_el) => {
                 let elText = $(li_el).text();
                 if (elText.length) {
-                    Recipe.ingredients.push(elText.trim());
+                    Recipe.ingredients.push(processString(elText));
                 }
             });
         });
     }
-
-    console.log()
 
     $("body")
         .find("li")
@@ -49,7 +51,7 @@ const generalScrape = (url, html) => {
             }
             let elText = $(el).text();
             if (elText.length) {
-                Recipe.instructions.push(elText.trim());
+                Recipe.instructions.push(processString(elText));
             }
         });
 
@@ -62,11 +64,16 @@ const generalScrape = (url, html) => {
             $(el).find("li").each((i, li_el) => {
                 let elText = $(li_el).text();
                 if (elText.length) {
-                    Recipe.instructions.push(elText.trim());
+                    Recipe.instructions.push(processString(elText));
                 }
             });
         });
     }
+
+    // Remove ingredients that got into instructions
+    Recipe.instructions = Recipe.instructions.filter((instruction)=>{
+        return !Recipe.ingredients.find(ingredient => ingredient == instruction);
+    });
 
     console.log(Recipe.ingredients);
     console.log(Recipe.instructions);
