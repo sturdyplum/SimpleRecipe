@@ -4,11 +4,15 @@ Quickly collect and simply display recipe information on the browser through a g
 Many recipe websites are cluttered with irrelevant images, text, and ads. This chrome extension allows you to quickly get the ingredients and instructions and provides a small popup on the top right of the page with this information (It even works when the website has a popup that blocks you from viewing the content).
 
 ## Recipe Scrapping 
-Most of the website scrapping code was taken from:
+Most of the fully supported website scrapping code was taken from:
 https://github.com/jadkins89/Recipe-Scraper
 Unfortunetly there are some issues with chrome extensions that don't allow me to use that repo directly. 
 
-## List of currently supported websites:
+## General Scrapper
+There is a general scrapper that does its best to get the info from non supported sites. 
+
+
+## List of fully supported websites:
 - https://www.101cookbooks.com/
 - https://www.allrecipes.com/
 - https://www.averiecooks.com/
@@ -39,7 +43,7 @@ Unfortunetly there are some issues with chrome extensions that don't allow me to
 - https://www.woolworths.com.au/
 
 ## How to contribute
-1. The most useful contributions would be adding new website that can be processed. I do plan on making a smarted more general parser that will be able to parse a large number of sites but having dedicated parsers will always be prefered. 
+1. The most useful contributions would be adding new website that can be processed. There is a general parser that is able to parse a large number of sites but having dedicated parsers will always be prefered. 
 2. Writing test
 3. Documentation
 4. Creating a better logo
