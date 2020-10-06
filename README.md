@@ -49,6 +49,6 @@ There is a general scrapper that does its best to get the info from non supporte
 4. Creating a better logo
 
 ## Future work
-Convert entire project to TypeScript
-Make it so that the ingredients are selectable and perhaps exportable (send them to email or chat or something)
-Send recipe to cookbook
+- Convert entire project to TypeScript
+- Make it so that the ingredients are selectable and perhaps exportable (send them to email or chat or something)
+- Send recipe to cookbook
