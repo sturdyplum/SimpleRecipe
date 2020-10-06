@@ -15,7 +15,7 @@ const generalScrape = (url, html) => {
     $("body")
         .find("li")
         .each((i, el) => {
-            if (!ingredientRegex.test($(el).attr('class'))) {
+            if (!ingredientRegex.test($(el).attr('class')) && !ingredientRegex.test($(el).attr('id'))) {
                 return;
             }
             let elText = $(el).text();
@@ -27,7 +27,7 @@ const generalScrape = (url, html) => {
     if(!Recipe.ingredients.length) {
         $("body")
         .find("ul, ol, div").each((i, el) => {
-            if (!ingredientRegex.test($(el).attr('class'))) {
+            if (!ingredientRegex.test($(el).attr('class')) && !ingredientRegex.test($(el).attr('id'))) {
                 return;
             }
             $(el).find("li").each((i, li_el) => {
@@ -44,7 +44,7 @@ const generalScrape = (url, html) => {
     $("body")
         .find("li")
         .each((i, el) => {
-            if (!instructionRegex.test($(el).attr('class'))) {
+            if (!instructionRegex.test($(el).attr('class')) && !instructionRegex.test($(el).attr('id'))) {
                 return;
             }
             let elText = $(el).text();
@@ -56,7 +56,7 @@ const generalScrape = (url, html) => {
     if(!Recipe.instructions.length) {
         $("body")
         .find("ul, ol, div").each((i, el) => {
-            if (!instructionRegex.test($(el).attr('class'))) {
+            if (!instructionRegex.test($(el).attr('class')) && !instructionRegex.test($(el).attr('id'))) {
                 return;
             }
             $(el).find("li").each((i, li_el) => {
