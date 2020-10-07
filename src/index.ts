@@ -22,8 +22,7 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
                     .addClass("mdc-linear-progress--closed");
                 
                 $("body").minHeight = "286px";
-
-                // Show button
+   
                 document.getElementById("copy_to_clipboard").style.display = "block";
 
                 {
@@ -32,7 +31,7 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
                     ingredientsTable.removeChild(ingredientsTable.getElementsByTagName("tbody")[0]);
                     let tbody = document.createElement("tbody");
                     tbody.classList.add("mdc-data-table__content");
-                    for (let index of recipe.ingredients) {
+                    for (let index in recipe.ingredients) {
                         if (recipe.ingredients[index].trim().length == 0) {
                             continue;
                         }
@@ -63,7 +62,7 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
                     instructionsTable.removeChild(instructionsTable.getElementsByTagName("tbody")[0]);
                     let tbody = document.createElement("tbody");
                     tbody.classList.add("mdc-data-table__content");
-                    for (let index of recipe.instructions) {
+                    for (let index in recipe.instructions) {
                         if (recipe.instructions[index].trim().length == 0) {
                             continue;
                         }
