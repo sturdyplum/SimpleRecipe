@@ -6,12 +6,20 @@ html {
     background: transparent; /* make scrollbar transparent */
 }
 
-td {
-    white-space: -o-pre-wrap; 
-    word-wrap: break-word;
-    white-space: pre-wrap; 
-    white-space: -moz-pre-wrap; 
-    white-space: -pre-wrap; 
+#ingredient-cell {
+    white-space: -o-pre-wrap !important;  
+    word-wrap: break-word !important;
+    white-space: pre-wrap !important; 
+    white-space: -moz-pre-wrap !important; 
+    white-space: -pre-wrap !important; 
+}
+
+#instructions-cell {
+    white-space: -o-pre-wrap !important;  
+    word-wrap: break-word !important;
+    white-space: pre-wrap !important; 
+    white-space: -moz-pre-wrap !important; 
+    white-space: -pre-wrap !important;
 }
 
 body {
@@ -26,19 +34,34 @@ body {
     float: left;
 }
 
-.ingredients-table {
+#ingredients-table {
     overflow: hidden;
+    max-width: 100%;
 }
 
 #instructions-table-div {
-    display: none;
-    overflow:hidden;
     overflow-y: scroll;
-    height: 250px; 
-    width:47%; 
-    float:right
+    display: none;
+    height: 250px;
+    width:47%;
+    float: right;
 }
 
-#get-recipe {
+#instructions-table {
+    overflow: hidden;
+    max-width: 100%;
+}
+
+#copy_to_clipboard {
     min-width: 100%;
+}
+
+#copy_to_clipboard_div {
+    min-width: 100%;
+}
+
+.bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
 }

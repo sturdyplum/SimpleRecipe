@@ -2,60 +2,82 @@ recipeScraper = require('./RecipeScraper/scrapers/index');
 
 let getRecipe = document.getElementById('get-recipe');
 
-let pageHtml = '';
-
-getRecipe.onclick = async function(element) {
-    chrome.tabs.query({active: true, lastFocusedWindow: true}, async (tabs) => {
-        if (pageHtml == '') {
-            return;
-        }
-        let url = tabs[0].url;
-        // use `url` here inside the callback because it's asynchronous!
-        let recipe = await recipeScraper(url, pageHtml).catch(error => {
-            console.log(error.message);
-            // => "Site not yet supported"
-          });
-        if (recipe) {
-            {
-                var ingredientsTable = document.getElementById("ingredients-table");
-                document.getElementById("ingredients-table-div").style.display = "block";
-                ingredientsTable.removeChild(ingredientsTable.getElementsByTagName("tbody")[0]);
-                let tbody = document.createElement("tbody");
-                for (index in recipe.ingredients) {
-                    if (recipe.ingredients[index].trim().length == 0) {
-                        continue;
-                    }
-                    var td = tbody.insertRow().insertCell();
-                    td.classList.add("mdl-data-table__cell--non-numeric");
-                    td.style="word-wrap:break-word";
-                    td.appendChild(document.createTextNode(recipe.ingredients[index]));
-                }
-                ingredientsTable.appendChild(tbody);
-            }
-
-            {
-                var instructionsTable = document.getElementById("instructions-table");
-                document.getElementById("instructions-table-div").style.display = "block";
-                instructionsTable.removeChild(instructionsTable.getElementsByTagName("tbody")[0]);
-                let tbody = document.createElement("tbody");
-                for (index in recipe.instructions) {
-                    if (recipe.instructions[index].trim().length == 0) {
-                        continue;
-                    }
-                    var td = tbody.insertRow().insertCell();
-                    td.classList.add("mdl-data-table__cell--non-numeric");
-                    td.style="word-wrap:break-word";
-                    td.appendChild(document.createTextNode(recipe.instructions[index]));
-                }
-                instructionsTable.appendChild(tbody);
-            }
-      }
-    });
-}
+var getTableRowFromString = function (str) {
+    // Needs to be `table` to properly parse html correctly.
+    var wrapper= document.createElement('table');
+    wrapper.innerHTML = str;
+	return wrapper.getElementsByTagName('tbody')[0].firstChild;
+};
 
 chrome.runtime.onMessage.addListener(function(request, sender) {
     if (request.action == "getSource") {
-        pageHtml = request.source;
+        let pageHtml = request.source;
+        chrome.tabs.query({active: true, lastFocusedWindow: true}, async (tabs) => {
+            let url = tabs[0].url;
+            let recipe = await recipeScraper(url, pageHtml).catch(error => {
+                console.log(error.message);
+                });
+            if (recipe) {
+                var loader = document.getElementById("html-loader");
+                loader.classList.remove("mdc-linear-progress--indeterminate");
+                loader.classList.add("mdc-linear-progress--closed");
+
+                document.body.style.minHeight = "286px";
+
+                // Show button
+                document.getElementById("copy_to_clipboard").style.display = "block";
+
+                {
+                    var ingredientsTable = document.getElementById("ingredients-table");
+                    document.getElementById("ingredients-table-div").style.display = "block";
+                    ingredientsTable.removeChild(ingredientsTable.getElementsByTagName("tbody")[0]);
+                    let tbody = document.createElement("tbody");
+                    tbody.classList.add("mdc-data-table__content");
+                    for (index in recipe.ingredients) {
+                        if (recipe.ingredients[index].trim().length == 0) {
+                            continue;
+                        }
+                        tbody.appendChild(getTableRowFromString(String.raw`
+                        <tr data-row-id="u${index}" class="mdc-data-table__row">
+                            <td class="mdc-data-table__cell mdc-data-table__cell--checkbox">
+                                <div class="mdc-checkbox mdc-data-table__row-checkbox">
+                                    <input type="checkbox" class="mdc-checkbox__native-control" aria-labelledby="u${index}"/>
+                                    <div class="mdc-checkbox__background">
+                                    <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                                        <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59" />
+                                    </svg>
+                                    <div class="mdc-checkbox__mixedmark"></div>
+                                    </div>
+                                    <div class="mdc-checkbox__ripple"></div>
+                                </div>
+                            </td>
+                            <td id="ingredient-cell" class="mdc-data-table__cell">${recipe.ingredients[index].trim()}</td>
+                        </tr>
+                        `));
+                    }
+                    ingredientsTable.appendChild(tbody);
+                }
+    
+                {
+                    var instructionsTable = document.getElementById("instructions-table");
+                    document.getElementById("instructions-table-div").style.display = "block";
+                    instructionsTable.removeChild(instructionsTable.getElementsByTagName("tbody")[0]);
+                    let tbody = document.createElement("tbody");
+                    tbody.classList.add("mdc-data-table__content");
+                    for (index in recipe.instructions) {
+                        if (recipe.instructions[index].trim().length == 0) {
+                            continue;
+                        }
+                        tbody.appendChild(getTableRowFromString(String.raw`
+                        <tr data-row-id="u${index}" class="mdc-data-table__row">
+                            <td id="instructions-cell" class="mdc-data-table__cell">${recipe.instructions[index].trim()}</td>
+                        </tr>
+                        `));
+                    }
+                    instructionsTable.appendChild(tbody);
+                }
+            }
+        });
     }
 });
 

@@ -2,37 +2,72 @@
 <html>  
   <head>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="node_modules/material-components-web/dist/material-components-web.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-    <!-- <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script> -->
   </head>
   <body>
-    <div id="ingredients-table-div">
-      <table id="ingredients-table"
-        class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-        <thead>
-          <tr>
-            <th class="mdl-data-table__cell--non-numeric">Ingredients</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+
+    <div id="html-loader" role="progressbar" class="mdc-linear-progress mdc-linear-progress--indeterminate" aria-label="Progress Bar">
+      <div class="mdc-linear-progress__buffer">
+        <div class="mdc-linear-progress__buffer-bar"></div>
+        <div class="mdc-linear-progress__buffer-dots"></div>
+      </div>
+      <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
+        <span class="mdc-linear-progress__bar-inner"></span>
+      </div>
+      <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
+        <span class="mdc-linear-progress__bar-inner"></span>
+      </div>
     </div>
 
-    <div id="instructions-table-div">
-      <table id="instructions-table"  style="overflow: hidden;"
-        class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-        <thead>
-          <tr>
-            <th class="mdl-data-table__cell--non-numeric">Instructions</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+    <div class="mdc-data-table"  id="ingredients-table-div">
+      <div class="mdc-data-table__table-container">
+        <table id="ingredients-table" class="mdc-data-table__table" aria-label="Ingredients">
+          <thead>
+            <tr class="mdc-data-table__header-row">
+              <th class="mdc-data-table__header-cell mdc-data-table__header-cell--checkbox" role="columnheader" scope="col">
+                <div class="mdc-checkbox mdc-data-table__header-row-checkbox mdc-checkbox--selected">
+                  <input type="checkbox" class="mdc-checkbox__native-control" aria-label="Toggle all rows"/>
+                  <div class="mdc-checkbox__background">
+                    <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                      <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59" />
+                    </svg>
+                    <div class="mdc-checkbox__mixedmark"></div>
+                  </div>
+                  <div class="mdc-checkbox__ripple"></div>
+                </div>
+              </th>
+              <th class="mdc-data-table__header-cell" role="columnheader" scope="col"><h1>Ingredients</h1></th>
+            </tr>
+          </thead>
+          <tbody class="mdc-data-table__content"></tbody>
+        </table>
+      </div>
     </div>
-    <button id="get-recipe" 
-            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-            Get Recipe</button>
+      
+    <div class="mdc-data-table"  id="instructions-table-div">
+      <div class="mdc-data-table__table-container">
+        <table id="instructions-table" class="mdc-data-table__table" aria-label="Ingredients">
+          <thead>
+            <tr class="mdc-data-table__header-row">
+              </th>
+              <th class="mdc-data-table__header-cell" role="columnheader" scope="col"><h1>Instructions</h1></th>
+            </tr>
+          </thead>
+          <tbody class="mdc-data-table__content"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="copy_to_clipboard_div" class="mdc-touch-target-wrapper bottom">
+      <button id="copy_to_clipboard" class="mdc-button mdc-button--raised" style="display: none;">
+        <div class="mdc-button__ripple"></div>
+        <i class="material-icons mdc-button__icon" aria-hidden="true"
+          >content_copy</i>
+        <span class="mdc-button__label">Copy Selected Ingredients To Clipboard</span>
+      </button>
+    </div>
   </body>
+  <script src="node_modules/material-components-web/dist/material-components-web.js"></script>
   <script src="dist/main.js"></script>
 </html>
