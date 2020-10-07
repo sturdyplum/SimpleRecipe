@@ -1,10 +1,9 @@
-recipeScraper = require('./RecipeScraper/scrapers/index');
+const recipeScraper = require('./RecipeScraper/scrapers/index');
+const $ = require("cash-dom");
 
-let getRecipe = document.getElementById('get-recipe');
-
-var getTableRowFromString = function (str) {
+let getTableRowFromString = function (str : string) {
     // Needs to be `table` to properly parse html correctly.
-    var wrapper= document.createElement('table');
+    let wrapper= document.createElement('table');
     wrapper.innerHTML = str;
 	return wrapper.getElementsByTagName('tbody')[0].firstChild;
 };
@@ -14,26 +13,25 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
         let pageHtml = request.source;
         chrome.tabs.query({active: true, lastFocusedWindow: true}, async (tabs) => {
             let url = tabs[0].url;
-            let recipe = await recipeScraper(url, pageHtml).catch(error => {
+            let recipe = await recipeScraper(url, pageHtml).catch((error : any)  => {
                 console.log(error.message);
                 });
             if (recipe) {
-                var loader = document.getElementById("html-loader");
-                loader.classList.remove("mdc-linear-progress--indeterminate");
-                loader.classList.add("mdc-linear-progress--closed");
-
-                document.body.style.minHeight = "286px";
-
-                // Show button
+                $("#html-loader")
+                    .removeClass("mdc-linear-progress--indeterminate")
+                    .addClass("mdc-linear-progress--closed");
+                
+                $("body").minHeight = "286px";
+   
                 document.getElementById("copy_to_clipboard").style.display = "block";
 
                 {
-                    var ingredientsTable = document.getElementById("ingredients-table");
+                    let ingredientsTable = document.getElementById("ingredients-table");
                     document.getElementById("ingredients-table-div").style.display = "block";
                     ingredientsTable.removeChild(ingredientsTable.getElementsByTagName("tbody")[0]);
                     let tbody = document.createElement("tbody");
                     tbody.classList.add("mdc-data-table__content");
-                    for (index in recipe.ingredients) {
+                    for (let index in recipe.ingredients) {
                         if (recipe.ingredients[index].trim().length == 0) {
                             continue;
                         }
@@ -59,12 +57,12 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
                 }
     
                 {
-                    var instructionsTable = document.getElementById("instructions-table");
+                    let instructionsTable = document.getElementById("instructions-table");
                     document.getElementById("instructions-table-div").style.display = "block";
                     instructionsTable.removeChild(instructionsTable.getElementsByTagName("tbody")[0]);
                     let tbody = document.createElement("tbody");
                     tbody.classList.add("mdc-data-table__content");
-                    for (index in recipe.instructions) {
+                    for (let index in recipe.instructions) {
                         if (recipe.instructions[index].trim().length == 0) {
                             continue;
                         }
