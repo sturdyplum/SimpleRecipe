@@ -1,0 +1,33 @@
+{
+  "name": "simplerecipe",
+  "version": "1.0.0",
+  "description": "Quickly collect and simply display recipe information on the browser through a google chrome extension.",
+  "main": "index.js",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "parse-domain": "^2.3.2",
+    "puppeteer": "^1.20.0",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "chai": "^4.2.0",
+    "coveralls": "^3.0.6",
+    "mocha": "^6.2.1",
+    "nyc": "^14.1.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sturdyplum/SimpleRecipe.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sturdyplum/SimpleRecipe/issues"
+  },
+  "homepage": "https://github.com/sturdyplum/SimpleRecipe#readme"
+}
