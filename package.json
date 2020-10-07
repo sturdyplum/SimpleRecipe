@@ -1,6 +1,6 @@
 {
   "name": "simplerecipe",
-  "version": "1.0.0",
+  "version": "0.0.0.1",
   "description": "Quickly collect and simply display recipe information on the browser through a google chrome extension.",
   "main": "index.js",
   "dependencies": {
