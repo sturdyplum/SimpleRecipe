@@ -92,8 +92,36 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
     }
 });
 
+/* Copies text to clipboard. */
+function copyToClipboard(str:string) : void {
+    const el = document.createElement('textarea');
+    el.value = str;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+};
+
 /* Runs script to extract html from tab. */
 function onWindowLoad() {
+    /* Set up onclick to copy contents of selected ingredients to clipboard. */
+    document.getElementById("copy_to_clipboard").onclick = function(){
+        let ingredientsText = "";
+        $("#ingredients-table")
+            .find("tbody")
+            .find("tr")
+            .each((i : number, el : Element) => {
+                if($(el).find("input")[0].checked) {
+                    ingredientsText += 
+                        $(el)
+                            .find("#ingredient-cell")
+                            .text() 
+                        + "\n\n";
+                }
+            });
+        copyToClipboard(ingredientsText.trim());
+    }
+
     chrome.tabs.executeScript(null, {
             file: "getPagesSource.js"
         }, function() {
