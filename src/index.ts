@@ -1,14 +1,24 @@
-import Recipe from 'RecipeScraper/helpers/recipe-schema';
+// import Recipe from 'RecipeScraper/helpers/recipe-schema';
+// const Recipe = {"ingredients": [], "instructions": []};
 
-const recipeScraper = require('./RecipeScraper/scrapers/index');
-const $ = require("cash-dom");
+// const recipeScraper = require('./RecipeScraper/scrapers/index');
+// const recipeScraper = require('recipe-scraper-js');
+import * as recipeScraper from 'recipe-scraper-js';
+// const $ = require("cash-dom");
+import $ from 'cash-dom';
+
+interface Recipe {
+  name: string,
+  ingredients: string[],
+  instructions: string[]
+};
 
 /* 
 Creates an tr Element with MDC-web classes containing a checkbox and the 
 ingredient text.
 */
 function getIngredientRow(ingredient: string, index: string) : Element {
-    return $(String.raw`
+    return $((String as any).raw`
     <table><tbody>
     <tr data-row-id="u${index}" class="mdc-data-table__row">
         <td class="mdc-data-table__cell mdc-data-table__cell--checkbox">
@@ -38,7 +48,7 @@ function getIngredientRow(ingredient: string, index: string) : Element {
 Creates an tr Element with MDC-web classes containing the instruction text.
 */
 function getInstructionRow(instruction : string, index : string) : Element {
-    return $(String.raw`
+    return $((String as any).raw`
     <table><tbody>
     <tr data-row-id="u${index}" class="mdc-data-table__row">
         <td 
@@ -78,17 +88,17 @@ function showRecipie(recipe : Recipe | undefined) : void {
 }
 
 /* Listener for html of tab. */
-chrome.runtime.onMessage.addListener(function(request, sender) {
+chrome.runtime.onMessage.addListener(function(request: any, sender: any) {
     if (request.action == "getSource") {
         let pageHtml = request.source;
-        chrome.tabs.query({active: true, lastFocusedWindow: true}, async (tabs) => {
+        chrome.tabs.query({active: true, lastFocusedWindow: true}, async function (tabs: any) {
             let url = tabs[0].url;
-            let recipe = await recipeScraper(url, pageHtml).catch((error : any)  => {
-                console.log(error.message);
-                });
+            let recipe = await recipeScraper.scrape(pageHtml).catch((error: any) => {
+              console.log(error.message);
+            });
 
             showRecipie(recipe);
-        });
+          });
     }
 });
 
@@ -105,13 +115,13 @@ function copyToClipboard(str:string) : void {
 /* Runs script to extract html from tab. */
 function onWindowLoad() {
     /* Set up onclick to copy contents of selected ingredients to clipboard. */
-    document.getElementById("copy_to_clipboard").onclick = function(){
+    document.getElementById("copy_to_clipboard").onclick = function() {
         let ingredientsText = "";
         $("#ingredients-table")
             .find("tbody")
             .find("tr")
             .each((i : number, el : Element) => {
-                if($(el).find("input")[0].checked) {
+                if(($(el).find("input")[0] as any).checked) {
                     ingredientsText += 
                         $(el)
                             .find("#ingredient-cell")
