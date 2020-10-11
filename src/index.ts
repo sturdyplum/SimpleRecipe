@@ -1,10 +1,4 @@
-// import Recipe from 'RecipeScraper/helpers/recipe-schema';
-// const Recipe = {"ingredients": [], "instructions": []};
-
-// const recipeScraper = require('./RecipeScraper/scrapers/index');
-// const recipeScraper = require('recipe-scraper-js');
 import * as recipeScraper from 'recipe-scraper-js';
-// const $ = require("cash-dom");
 import $ from 'cash-dom';
 
 interface Recipe {
