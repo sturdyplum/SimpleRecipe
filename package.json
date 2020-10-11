@@ -1,9 +1,11 @@
 {
   "name": "simplerecipe",
-  "version": "0.0.0.1",
+  "version": "0.0.1",
   "description": "Quickly collect and simply display recipe information on the browser through a google chrome extension.",
   "main": "index.js",
   "dependencies": {
+    "@types/chrome": "0.0.124",
+    "cash-dom": "^8.1.0",
     "cheerio": "^1.0.0-rc.3",
     "parse-domain": "^2.3.2",
     "puppeteer": "^1.20.0"
@@ -18,7 +20,9 @@
     "webpack-cli": "^3.3.12"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "pack": "npm run build && npx webpack --config=webpack.config.json"
   },
   "repository": {
     "type": "git",

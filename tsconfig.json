@@ -1,12 +1,24 @@
 {
     "compilerOptions": {
-      "outDir": "./dist/",
-      "noImplicitAny": true,
-      "module": "es6",
-      "target": "es5",
-      "jsx": "react",
-      "allowJs": true,
-      "baseUrl": "./src", 
-      "esModuleInterop": true,
-    }
-  }
+        "outDir": "./dist/",
+        "noImplicitAny": true,
+        "module": "es6",
+        "target": "es5",
+        "jsx": "react",
+        "allowJs": true,
+        "baseUrl": "./src",
+        "esModuleInterop": true,
+        "paths": {
+            "recipe-scraper-js": ["node_modules/recipe-scraper-js/src"],
+            "recipe-scraper-js/*": ["node_modules/recipe-scraper-js/src/*"]
+        },
+        "moduleResolution": "node"
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules/",
+        "dist"
+    ]
+}

@@ -51,6 +51,25 @@ There is a general scrapper that does its best to get the info from non supporte
 3. Documentation
 4. Creating a better logo
 
+## Setup
+Do install of dependencies first and make sure to have webpack and webpack-cli install globally.
+```
+npm install
+npm install --global webpack webpack-cli
+```
+
+This library requires the scraper library available [here](https://github.com/nalshihabi/recipe-scraper-js). You will have to clone that one locally and then link it within this one:
+```
+npm link path/to/recipe-scraper-js
+```
+
+Then you can use the pack script to pack it for building and packing the extension for use in Chrome.
+```
+npm run pack
+```
+
+To set up in chrome just add as an unpacked extension there.
+
 ## Future work
 - Convert entire project to TypeScript
 - Make it so that the ingredients are selectable and perhaps exportable (send them to email or chat or something)
