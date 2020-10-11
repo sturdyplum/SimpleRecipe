@@ -7,7 +7,7 @@
     "@types/chrome": "0.0.124",
     "cash-dom": "^8.1.0",
     "cheerio": "^1.0.0-rc.3",
-    "parse-domain": "^2.3.2"
+    "material-components-web": "^7.0.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
