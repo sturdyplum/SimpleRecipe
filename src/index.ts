@@ -11,7 +11,7 @@ interface Recipe {
 Creates an tr Element with MDC-web classes containing a checkbox and the 
 ingredient text.
 */
-function getIngredientRow(ingredient: string, index: string) : Element {
+export function getIngredientRow(ingredient: string, index: string) : Element {
     return $((String as any).raw`
     <table><tbody>
     <tr data-row-id="u${index}" class="mdc-data-table__row">
@@ -35,13 +35,13 @@ function getIngredientRow(ingredient: string, index: string) : Element {
             id="ingredient-cell" 
             class="mdc-data-table__cell">${ingredient}</td>
     </tr></tbody></table>
-    `).find("tr")[0];
+    `).find("tr")[0]!;
 }
 
 /* 
 Creates an tr Element with MDC-web classes containing the instruction text.
 */
-function getInstructionRow(instruction : string, index : string) : Element {
+export function getInstructionRow(instruction : string, index : string) : Element {
     return $((String as any).raw`
     <table><tbody>
     <tr data-row-id="u${index}" class="mdc-data-table__row">
@@ -49,14 +49,14 @@ function getInstructionRow(instruction : string, index : string) : Element {
             id="instructions-cell" 
             class="mdc-data-table__cell">${instruction}</td>
     </tr></tbody></table>
-    `).find("tr")[0];
+    `).find("tr")[0]!;
 }
 
 /*
 Show the recipe on the popup or an error message if the recipe could not
 be parsed.
 */
-function showRecipie(recipe : Recipe | undefined) : void {
+export function showRecipie(recipe : Recipe | undefined) : void {
     $("#html-loader").hide();
     
     if (!recipe) {
@@ -70,22 +70,22 @@ function showRecipie(recipe : Recipe | undefined) : void {
 
     let ingredientsBody = $("#ingredients-table").find("tbody")[0];
     for (let index in recipe.ingredients) {
-        ingredientsBody
+        ingredientsBody!
             .append(getIngredientRow(recipe.ingredients[index].trim(), index));
     }
 
     let instructionsBody = $("#instructions-table").find("tbody")[0];
     for (let index in recipe.instructions) {
-        instructionsBody
+        instructionsBody!
             .append(getInstructionRow(recipe.instructions[index].trim(), index));
     }
 }
 
 /* Listener for html of tab. */
-chrome.runtime.onMessage.addListener(function(request: any, sender: any) {
+chrome.runtime.onMessage.addListener( (request: any, sender: any) => {
     if (request.action == "getSource") {
         let pageHtml = request.source;
-        chrome.tabs.query({active: true, lastFocusedWindow: true}, async function (tabs: any) {
+        chrome.tabs.query({active: true, lastFocusedWindow: true}, async (tabs: any) => {
             let url = tabs[0].url;
             let recipe = await recipeScraper.scrape(pageHtml).catch((error: any) => {
               console.log(error.message);
@@ -97,7 +97,7 @@ chrome.runtime.onMessage.addListener(function(request: any, sender: any) {
 });
 
 /* Copies text to clipboard. */
-function copyToClipboard(str:string) : void {
+export function copyToClipboard(str:string) : void {
     const el = document.createElement('textarea');
     el.value = str;
     document.body.appendChild(el);
@@ -107,9 +107,9 @@ function copyToClipboard(str:string) : void {
 };
 
 /* Runs script to extract html from tab. */
-function onWindowLoad() {
+export function onWindowLoad() {
     /* Set up onclick to copy contents of selected ingredients to clipboard. */
-    document.getElementById("copy_to_clipboard").onclick = function() {
+    document.getElementById("copy_to_clipboard")!.onclick = () => {
         let ingredientsText = "";
         $("#ingredients-table")
             .find("tbody")
@@ -126,9 +126,9 @@ function onWindowLoad() {
         copyToClipboard(ingredientsText.trim());
     }
 
-    chrome.tabs.executeScript(null, {
+    chrome.tabs.executeScript({
             file: "getPagesSource.js"
-        }, function() {
+        }, () => {
             // If you try and inject into an extensions 
             // page or the webstore/NTP you'll get an error
             if (chrome.runtime.lastError) {
