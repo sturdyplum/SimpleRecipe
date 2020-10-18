@@ -160,3 +160,8 @@ body {
 #copy_to_clipboard {
     background-color: #b067c1;
 }
+
+.mdc-data-table__header-row{
+    background-color: #e7a6f4;
+    opacity:0.9;
+}

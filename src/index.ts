@@ -122,6 +122,10 @@ export function onWindowLoad() {
         copyToClipboard(ingredientsText.trim());
     }
 
+    document.getElementById("exit-app")!.onclick = () => {
+        window.close();
+    }
+
     chrome.tabs.executeScript({
             file: "getPagesSource.js"
         }, () => {
