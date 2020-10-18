@@ -60,14 +60,10 @@ export function showRecipie(recipe : Recipe | undefined) : void {
     $("#html-loader").hide();
     
     if (!recipe) {
-        // TODO(sturdyplum) add the error message.
+        $("#failure").css('display', 'flex');
         return;
     }
-
-    $("#ingredients-table-div").show();
-    $("#instructions-table-div").show();
-    $("#copy_to_clipboard").show();
-
+    $("#success").css('display', 'flex');
     let ingredientsBody = $("#ingredients-table").find("tbody")[0];
     for (let index in recipe.ingredients) {
         ingredientsBody!
