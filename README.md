@@ -3,7 +3,7 @@ Quickly collect and simply display recipe information on the browser through a g
 
 Many recipe websites are cluttered with irrelevant images, text, and ads. This chrome extension allows you to quickly get the ingredients and instructions and provides a small popup on the top right of the page with this information (It even works when the website has a popup that blocks you from viewing the content).
 
-![Screenshot of extension](https://github.com/sturdyplum/SimpleRecipe/blob/main/images/extension3.png?raw=true)
+![Screenshot of extension](https://github.com/sturdyplum/SimpleRecipe/blob/main/images/extension4.png?raw=true)
 
 
 ## General Scrapper
