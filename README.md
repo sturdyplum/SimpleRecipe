@@ -6,47 +6,11 @@ Many recipe websites are cluttered with irrelevant images, text, and ads. This c
 ![Screenshot of extension](https://github.com/sturdyplum/SimpleRecipe/blob/main/images/extension3.png?raw=true)
 
 
-## Recipe Scrapping 
-Most of the fully supported website scrapping code was taken from:
-https://github.com/jadkins89/Recipe-Scraper
-Unfortunetly there are some issues with chrome extensions that don't allow me to use that repo directly. 
-
 ## General Scrapper
-There is a general scrapper that does its best to get the info from non supported sites. 
-
-
-## List of fully supported websites:
-- https://www.101cookbooks.com/
-- https://www.allrecipes.com/
-- https://www.averiecooks.com/
-- https://www.bbc.co.uk/
-- https://www.bbcgoodfood.com/
-- https://www.bonappetit.com/
-- https://www.budgetbytes.com/
-- https://www.centraltexasfoodbank.org/
-- https://cookieandkate.com/
-- http://www.eatingwell.com/
-- https://www.epicurious.com/
-- https://www.finecooking.com/
-- https://www.food.com/
-- https://www.foodandwine.com/
-- https://www.foodnetwork.com/
-- http://www.gimmesomeoven.com/
-- https://www.kitchenstories.com/
-- https://www.minimalistbaker.com/
-- https://www.myrecipes.com/
-- https://www.omnivorescookbook.com/
-- https://www.seriouseats.com/
-- https://www.simplyrecipes.com/
-- https://smittenkitchen.com/
-- https://thepioneerwoman.com/
-- https://therealfoodrds.com/
-- https://www.thespruceeats.com/
-- https://whatsgabycooking.com/
-- https://www.woolworths.com.au/
+There is a general scrapper that does its best to get the info from all sites.
 
 ## How to contribute
-1. The most useful contributions would be adding new website that can be processed. There is a general parser that is able to parse a large number of sites but having dedicated parsers will always be prefered. 
+1. Adding new cases to the general scrapper. 
 2. Writing test
 3. Documentation
 4. Creating a better logo
