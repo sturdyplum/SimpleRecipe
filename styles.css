@@ -116,7 +116,7 @@ body {
     font-size: 1.25rem;
 }
 
-#instructions-table-div {
+#ingredients-table-div {
     overflow-y: scroll;
     width:47%;
     margin-left: 2%;
@@ -136,7 +136,7 @@ body {
     height: 280px;
 }
 
-#ingredients-table-div {
+#instructions-table-div {
     overflow-y: scroll;
     width:47%;
     margin-left: 1%;
@@ -158,10 +158,32 @@ body {
 }
 
 #copy_to_clipboard {
-    background-color: #b067c1;
+    background-color: transparent;
+    padding: 0px;
+    width: 40px;
+    height: 40px;
+}
+
+#copy_to_clipboard_div {
+    width: 40px;
+    height: 40px;
+}
+
+#padding-right {
+    padding-right: 16px;
+    padding-left: 16px;
 }
 
 .mdc-data-table__header-row{
     background-color: #e7a6f4;
     opacity:0.9;
+}
+
+.mdc-button__ripple {
+    width: 90%;
+}
+
+#copy-icon {
+    font-size: 1.9em;
+    margin-left: -32%;
 }

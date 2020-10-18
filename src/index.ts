@@ -111,7 +111,7 @@ export function onWindowLoad() {
             .find("tbody")
             .find("tr")
             .each((i : number, el : Element) => {
-                if(($(el).find("input")[0] as any).checked) {
+                if(!($(el).find("input")[0] as any).checked) {
                     ingredientsText += 
                         $(el)
                             .find("#ingredient-cell")
