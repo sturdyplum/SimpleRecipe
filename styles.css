@@ -1,5 +1,5 @@
 :root {
-    --mdc-theme-primary: #b067c1;
+    --mdc-theme-primary: #732984;
     --mdc-theme-secondary: #e7a6f4;
 }
 
@@ -10,6 +10,9 @@ html {
 ::-webkit-scrollbar {
     width: 0px;
     background: transparent; /* make scrollbar transparent */
+}
+.mdc-top-app-bar {
+    height: fit-content;
 }
 
 #ingredient-cell {
@@ -31,50 +34,129 @@ html {
 body {
     min-width: 600px;
     height: fit-content;
+    margin: 0px;
 }
 
-#ingredients-table-div {
-    overflow-y: scroll;
+.mdc-top-app-bar {
+    height: 15%;
+}
+
+.mdc-top-app-bar__row {
+    height: 100%;
+}
+
+.mdc-top-app-bar__section {
+ padding-top: 2px;
+ padding-bottom: 2px;
+}
+
+#logo {
+    height: 118%;
+    width: 21%;
+    overflow: hidden;
+}
+
+#success {
     display: none;
-    height: 250px;
+    flex-direction: column;
+}
+
+#tables-div {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    max-width: 100%;
+    justify-content: space-evenly;
+}
+
+#failure {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    height: fit-content;
+}
+
+#error-top{
+    background-color: #732984;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#sorry-text{
+    color: #F5F5F5;
+    font-size: 2rem;
+    flex: 1;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+#error-bot{
+    background-color: #F5F5F5;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#sad-logo{
+    align-self: center;
+    flex: 2;
+}
+
+#error-message{
+    padding-left: 10%;
+    padding-right: 10%;
+    overflow-wrap: break-word;
+    text-align: center;
+    font-size: 1.25rem;
+}
+
+#instructions-table-div {
+    overflow-y: scroll;
     width:47%;
     margin-left: 2%;
     margin-right: 1%;
-    margin-bottom: 7%;
+    margin-bottom: 2%;
     float: left;
+    margin-top: 10%;
 }
 
 #ingredients-table {
     overflow: hidden;
     max-width: 100%;
+    height: 100%;
 }
 
-#instructions-table-div {
+.mdc-data-table__table-container {
+    height: 280px;
+}
+
+#ingredients-table-div {
     overflow-y: scroll;
-    display: none;
-    height: 250px;
     width:47%;
     margin-left: 1%;
     margin-right: 2%;
-    margin-bottom: 7%;
+    margin-bottom: 2%;
     float: right;
+    margin-top: 10%;
 }
 
 #instructions-table {
     overflow: hidden;
     max-width: 100%;
+    height: 100%;
+}
+
+#exit-app {
+    background-color: #e7a6f4;
+    margin-bottom: 10%;
 }
 
 #copy_to_clipboard {
-    min-width: 100%;
-}
-
-#copy_to_clipboard_div {
-    min-width: 100%;
-}
-
-.bottom {
-    position: fixed;
-    bottom: 0;
-    left: 0;
+    background-color: #b067c1;
 }
