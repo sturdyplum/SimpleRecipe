@@ -1,6 +1,6 @@
 {
     "name": "Simple Recipe",
-    "version": "0.0.0.1",
+    "version": "0.0.0.4",
     "description": "Quickly collect and simply display recipe information.",
     "permissions": ["declarativeContent", "activeTab", "clipboardWrite"],
     "page_action": {
