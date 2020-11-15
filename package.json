@@ -4,6 +4,7 @@
   "description": "Quickly collect and simply display recipe information on the browser through a google chrome extension.",
   "main": "dist/index.js",
   "dependencies": {
+    "@types/cheerio": "^0.22.22",
     "@types/chrome": "0.0.124",
     "cash-dom": "^8.1.0",
     "cheerio": "^1.0.0-rc.3",

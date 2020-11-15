@@ -1,4 +1,4 @@
-import * as recipeScraper from 'recipe-scraper-js';
+import * as recipeScraper from'./recipe_scraper';	
 import $ from 'cash-dom';
 
 interface Recipe {

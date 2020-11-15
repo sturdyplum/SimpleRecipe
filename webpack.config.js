@@ -25,4 +25,8 @@ module.exports = {
     tls: 'empty',
     fs: 'empty',
   },
+
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js']
+  }
 };
