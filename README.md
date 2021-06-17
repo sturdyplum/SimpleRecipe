@@ -1,4 +1,7 @@
 # SimpleRecipe
+
+https://chrome.google.com/webstore/detail/simple-recipe/pfhhoehdkfgfbaeobdfnbkacgikionme
+
 Quickly collect and simply display recipe information on the browser through a google chrome extension.
 
 Many recipe websites are cluttered with irrelevant images, text, and ads. This chrome extension allows you to quickly get the ingredients and instructions and provides a small popup on the top right of the page with this information (It even works when the website has a popup that blocks you from viewing the content).
